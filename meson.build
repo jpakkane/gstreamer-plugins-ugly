@@ -125,12 +125,12 @@ if orc_dep.found()
   cdata.set('HAVE_ORC', 1)
 endif
 
-configure_file(input : 'config.h.in',
+configure_file(input : 'config.h.meson',
   output : 'config.h',
   configuration : cdata)
 
 core_args = ['-DHAVE_CONFIG_H']
 core_incs = include_directories('.', 'gst-libs')
 
-#subdir('gst')
+subdir('gst')
 #subdir('ext')
