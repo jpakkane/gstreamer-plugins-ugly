@@ -73,7 +73,6 @@ check_functions = [
 # check token HAVE_SIDPLAY
 # check token HAVE_TWOLAME
 # check token HAVE_VALGRIND
-# check token HAVE_X264
 ]
 
 foreach f : check_functions
@@ -120,10 +119,16 @@ orc_dep = dependency('orc-0.4')
 zlib_dep = dependency('zlib')
 gio_dep = dependency('gio-2.0')
 #gl_dep = dependency('gl')
+x264_dep = dependency('x264')
 
 if orc_dep.found()
   cdata.set('HAVE_ORC', 1)
 endif
+
+if x264_dep.found()
+  cdata.set('HAVE_X264', 1)
+endif
+
 
 configure_file(input : 'config.h.meson',
   output : 'config.h',
@@ -133,4 +138,4 @@ core_args = ['-DHAVE_CONFIG_H']
 core_incs = include_directories('.', 'gst-libs')
 
 subdir('gst')
-#subdir('ext')
+subdir('ext')
